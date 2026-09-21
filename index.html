@@ -14,22 +14,24 @@ main{max-width:1100px;margin:auto;padding:13px}.card{background:#fff;border:1px 
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}.stat small{color:var(--mut)}.stat b{display:block;font-size:22px;margin-top:3px}
 .form{display:grid;grid-template-columns:1fr 1fr;gap:9px}.form label{font-size:12px;color:var(--mut);font-weight:750}.form input,.form textarea,.form select{width:100%;margin-top:4px;padding:10px;border:1px solid #cbd9dd;border-radius:10px}.form textarea{min-height:105px}.full{grid-column:1/-1}
 .item{border:1px solid var(--line);border-radius:14px;padding:11px;margin-top:8px}.item h3{margin:0 0 4px;font-size:16px}.tag{display:inline-block;padding:4px 7px;border-radius:999px;font-size:10px;font-weight:900}.green{background:#dff3e9;color:#24704e}.red{background:#fde4e4;color:#a63d3d}.orange{background:#fff0d5;color:#97641d}.gray{background:#edf1f2;color:#65747a}
+.child-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}.child-edit{background:#fff0bf;color:#654b00;border:1px solid #e5bd43;white-space:nowrap}.child-edit:hover{background:#efbf53}.child-edit:focus-visible{outline:3px solid #28758b66;outline-offset:2px}
 .childgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-height:330px;overflow:auto}.childpick{border:1px solid var(--line);border-radius:11px;padding:9px;display:flex;gap:7px;align-items:center}.childpick input{width:18px;height:18px}
 .login{max-width:470px;margin:7vh auto}.hidden{display:none!important}.notice{padding:10px;border:1px solid #ead6a3;background:#fff7df;color:#735c30;border-radius:11px;margin:8px 0;font-size:12px}.success{background:#eaf8f1;border-color:#bce1cf;color:#266e4e}
 .modal{position:fixed;inset:0;background:#10262dcc;z-index:100;display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:#fff;border-radius:22px 22px 0 0;padding:17px;max-height:92vh;overflow:auto}
 .doc{max-width:720px;margin:auto;background:#fff;border:1px solid #d6dfe2;border-radius:19px;padding:22px;box-shadow:0 10px 35px #23414c10}.dochead{text-align:center;border-bottom:2px solid var(--n);padding-bottom:14px;margin-bottom:15px}.dochead h2{font-size:27px;margin:5px 0}.docno{font-size:11px;color:var(--mut)}.docinfo{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0}.docinfo div{padding:9px;border-bottom:1px solid var(--line)}.docinfo div:nth-child(odd){border-right:1px solid var(--line)}.section{margin:17px 0}.section h3{font-size:15px;margin:0 0 7px;color:var(--n)}.papertext{white-space:pre-wrap;line-height:1.8}.verifybox{background:#f5f9fa;border:1px solid var(--line);border-radius:15px;padding:13px;margin-top:16px}
 .signature-wrap{margin-top:13px}.signature-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}.signature-box{position:relative;border:2px dashed #9fb4ba;border-radius:14px;background:#fff;overflow:hidden;touch-action:none}.signature-box canvas{display:block;width:100%;height:180px;touch-action:none}.signature-guide{position:absolute;left:14px;right:14px;bottom:35px;border-top:1px solid #d6e0e3;pointer-events:none}.signature-hint{position:absolute;inset:0;display:grid;place-items:center;color:#9aabb0;font-weight:800;pointer-events:none}.signature-preview{max-width:220px;max-height:90px;border:1px solid var(--line);border-radius:9px;background:#fff;margin-top:6px}
 .choice{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}.choice button{border:2px solid var(--line);background:#fff;border-radius:15px;padding:15px;font-weight:900}.choice .agree.on{background:#eaf8f1;border-color:var(--g);color:var(--g)}.choice .decline.on{background:#fff0f0;border-color:var(--r);color:var(--r)}
-.signed-paper{max-width:760px;margin:auto;background:#fff;color:#1d2b30;padding:34px 38px;border:1px solid #cfd9dc}.signed-title{text-align:center;border-bottom:2px solid #263b42;padding-bottom:16px;margin-bottom:20px}.signed-title h2{margin:5px 0;font-size:28px}.signed-table{width:100%;border-collapse:collapse;margin:14px 0}.signed-table th,.signed-table td{border:1px solid #bfcdd1;padding:10px;text-align:left;vertical-align:top}.signed-table th{width:105px;background:#f4f7f8}.signed-body{white-space:pre-wrap;line-height:1.8;min-height:52px}.signed-choice{margin:22px 0;padding:15px;border:2px solid var(--n);border-radius:8px;text-align:center;font-size:18px;font-weight:900}.signed-signature{display:flex;justify-content:flex-end;align-items:center;gap:15px;margin-top:38px}.signed-signature img{width:210px;height:90px;object-fit:contain;border-bottom:1px solid #65777d}.signed-foot{margin-top:24px;padding-top:12px;border-top:1px solid #d9e1e3;font-size:10px;color:#64777d;word-break:break-all}.print-actions{max-width:760px;margin:0 auto 10px;display:flex;justify-content:flex-end;gap:8px}
+.signed-paper{max-width:760px;margin:auto;background:#fff;color:#1d2b30;padding:34px 38px;border:1px solid #cfd9dc}.signed-title{text-align:center;border-bottom:2px solid #263b42;padding-bottom:16px;margin-bottom:20px}.signed-title h2{margin:5px 0;font-size:28px}.signed-table{width:100%;border-collapse:collapse;margin:14px 0}.signed-table th,.signed-table td{border:1px solid #bfcdd1;padding:10px;text-align:left;vertical-align:top}.signed-table th{width:105px;background:#f4f7f8}.signed-body{white-space:pre-wrap;line-height:1.8;min-height:52px}.signed-choice{margin:22px 0;padding:15px;border:2px solid var(--n);border-radius:8px;text-align:center;font-size:18px;font-weight:900}.signed-signature{display:flex;justify-content:flex-end;align-items:center;gap:15px;margin-top:38px}.signed-signature img{width:210px;height:90px;object-fit:contain;border-bottom:1px solid #65777d}.signed-foot{margin-top:24px;padding-top:12px;border-top:1px solid #d9e1e3;font-size:10px;color:#64777d;word-break:break-all}.print-actions{position:sticky;top:-17px;z-index:5;max-width:760px;margin:-17px auto 10px;padding:12px 4px 10px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}.scale-control{margin-right:auto;padding:6px 9px;border-radius:11px;background:#edf4f6}.scale-control input{accent-color:var(--n)}.scale-step{border:0;border-radius:8px;background:#dbe8eb;color:var(--n);font-weight:900;width:30px;height:30px;cursor:pointer}
 .resultrow{display:grid;grid-template-columns:1.2fr 100px 1fr 140px;gap:7px;align-items:center;border-bottom:1px solid #edf1f2;padding:9px 4px}.linkbox{background:#f5f9fa;border:1px solid var(--line);border-radius:10px;padding:9px;font-size:11px;word-break:break-all}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(18px);opacity:0;background:var(--n);color:#fff;padding:10px 14px;border-radius:999px;transition:.2s;z-index:200}.toast.show{opacity:1;transform:translateX(-50%)}
 @media(max-width:700px){.stats{grid-template-columns:1fr 1fr}.childgrid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.resultrow{grid-template-columns:1fr 85px}.resultrow>div:nth-child(3){grid-column:1/-1}}
-@media(max-width:440px){.childgrid{grid-template-columns:1fr}.choice{grid-template-columns:1fr}.doc{padding:14px}.docinfo{grid-template-columns:1fr}.docinfo div:nth-child(odd){border-right:0}.dochead h2{font-size:22px}}
-@media print{body *{visibility:hidden!important}#signedDocumentModal,#signedDocumentModal *{visibility:visible!important}#signedDocumentModal{position:absolute;inset:0;background:#fff;display:block!important}#signedDocumentModal .sheet{max-height:none;width:100%;padding:0;overflow:visible;border-radius:0}.print-actions{display:none!important}.signed-paper{border:0;max-width:none;padding:12mm;box-shadow:none}header,main{display:none!important}}
+@media(max-width:440px){.childgrid{grid-template-columns:1fr}.choice{grid-template-columns:1fr}.doc{padding:14px}.docinfo{grid-template-columns:1fr}.docinfo div:nth-child(odd){border-right:0}.dochead h2{font-size:22px}.child-item{grid-template-columns:minmax(0,1fr) auto}.child-edit{padding:9px 10px}}
+@page{size:A4 portrait;margin:7mm}
+@media print{body *{visibility:hidden!important}html,body{width:210mm!important;height:277mm!important;max-height:277mm!important;margin:0!important;background:#fff;overflow:hidden!important}#signedDocumentModal,#signedDocumentModal *{visibility:visible!important}#signedDocumentModal{position:absolute!important;left:0!important;top:0!important;width:196mm!important;height:265mm!important;background:#fff;display:block!important;overflow:hidden!important}#signedDocumentModal .sheet{position:absolute!important;left:0!important;top:0!important;width:196mm!important;height:265mm!important;max-height:265mm!important;padding:0!important;overflow:hidden!important;border-radius:0}.print-actions{display:none!important}.signed-paper{position:absolute!important;left:0!important;top:0!important;border:0;width:196mm!important;height:265mm!important;max-width:196mm!important;margin:0!important;padding:2mm 5mm!important;box-shadow:none;font-size:9px!important;line-height:1.18!important;zoom:1!important;overflow:hidden!important;break-inside:avoid!important;page-break-inside:avoid!important;page-break-after:avoid!important}.signed-title{padding-bottom:3px!important;margin-bottom:4px!important}.signed-title h2{font-size:17px!important;margin:1px 0!important}.signed-table{margin:4px 0!important}.signed-table th,.signed-table td{padding:3px 5px!important}.signed-paper h3{font-size:10px!important;margin:5px 0 2px!important}.signed-body{line-height:1.25!important;min-height:0!important}.signed-choice{margin:5px 0!important;padding:5px!important;font-size:11px!important}.signed-signature{position:absolute!important;left:72mm!important;top:210mm!important;width:115mm!important;margin:0!important;gap:6px!important;break-inside:avoid!important;page-break-inside:avoid!important}.signed-signature img{width:110px!important;height:42px!important}.signed-foot{position:absolute!important;left:5mm!important;top:248mm!important;width:186mm!important;margin:0!important;padding-top:3px!important;font-size:7px!important;break-inside:avoid!important;page-break-inside:avoid!important}header,main{display:none!important}}
 </style>
 </head>
 <body>
-<header><div class="head"><div><h1>📝 SafeConsent</h1><small>지역아동센터 온라인 참가 동의서</small></div><div id="headerRight"></div></div></header>
+<header><div class="head"><div><h1>📝 SafeConsent <span style="font-size:12px;background:#fff;color:#174b5a;padding:4px 8px;border-radius:8px">V3.2 · 아동수정 / A4</span></h1><small>지역아동센터 온라인 참가 동의서</small></div><div id="headerRight"></div></div></header>
 <main>
 <section id="setupView" class="login hidden">
  <div class="card hero"><h2>Supabase 연결</h2><div class="mut">Project URL과 Publishable/Anon Key를 입력합니다. Service Role Key는 넣지 마세요.</div>
@@ -50,7 +52,7 @@ main{max-width:1100px;margin:auto;padding:13px}.card{background:#fff;border:1px 
   <div class="card"><h3 style="margin-top:0">동의서 목록</h3><div id="formList"></div></div>
  </section>
  <section id="childrenView" class="hidden">
-  <div class="card row between"><div><h2 style="margin:0">아동 명단</h2><div class="mut">보호자 휴대전화 뒤 4자리 확인에 사용됩니다.</div></div><div class="row"><button class="btn soft" id="seedBtn">가상 30명 넣기</button><button class="btn gold" id="newChildBtn">+ 아동등록</button></div></div>
+  <div class="card row between"><div><h2 style="margin:0">아동 명단</h2><div class="mut">보호자 휴대전화 뒤 4자리 확인에 사용됩니다. 각 아동의 <b>정보 수정</b> 버튼으로 내용을 바꿀 수 있습니다.</div></div><div class="row"><button class="btn soft" id="seedBtn">가상 30명 넣기</button><button class="btn gold" id="newChildBtn">+ 아동등록</button></div></div>
   <div class="card" id="childList"></div>
  </section>
 </section>
@@ -118,13 +120,13 @@ main{max-width:1100px;margin:auto;padding:13px}.card{background:#fff;border:1px 
 </div></div>
 
 <div class="modal hidden" id="signedDocumentModal"><div class="sheet">
- <div class="print-actions"><button class="btn soft" id="signedDocumentClose">닫기</button><button class="btn primary" id="printSignedDocument">인쇄 / PDF 저장</button></div>
+ <div class="print-actions"><div class="row scale-control"><b style="font-size:12px">A4 크기</b><button type="button" class="scale-step" id="pdfScaleDown">−</button><input id="pdfScale" type="range" min="70" max="100" value="90" step="1" style="width:120px" aria-label="A4 출력 크기"><button type="button" class="scale-step" id="pdfScaleUp">＋</button><b id="pdfScaleValue" style="min-width:38px">90%</b></div><button class="btn soft" id="signedDocumentClose">닫기</button><button class="btn primary" id="printSignedDocument">A4 한 장 저장</button></div>
  <article class="signed-paper" id="signedDocument"></article>
 </div></div>
 
 <div class="modal hidden" id="childModal"><div class="sheet">
- <h2>아동 등록</h2>
- <div class="form"><label>이름<input id="cName"></label><label>학년<input id="cGrade"></label><label>보호자 이름<input id="cGuardian"></label><label>보호자 연락처<input id="cPhone" placeholder="010-1234-5678"></label><label>가족그룹<input id="cFamily"></label></div>
+ <h2 id="childModalTitle">아동 등록</h2>
+ <div class="form"><label>이름<input id="cName"></label><label>학년<input id="cGrade"></label><label>보호자 이름<input id="cGuardian"></label><label>보호자 연락처<input id="cPhone" placeholder="010-1234-5678"></label><label>가족그룹<input id="cFamily"></label><label>명단 상태<select id="cActive"><option value="true">활성</option><option value="false">비활성</option></select></label></div>
  <div class="row" style="margin-top:12px"><button class="btn soft" id="childCancel">취소</button><button class="btn primary" id="childSave">등록</button></div>
 </div></div>
 
@@ -136,7 +138,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const CFG='safeconsent-v2-config';
-let sb=null,centerId=null,centerName="지역아동센터",kids=[],forms=[],publicToken=null,publicForm=null,verified=null,decision=null,signaturePad=null;
+let sb=null,centerId=null,centerName="지역아동센터",kids=[],forms=[],editingChildId=null,publicToken=null,publicForm=null,verified=null,decision=null,signaturePad=null;
 const show=id=>["setupView","loginView","adminView","publicView"].forEach(x=>$("#"+x).classList.toggle("hidden",x!==id));
 const toast=m=>{let t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1400)};
 const fmt=v=>v?new Date(v).toLocaleString("ko-KR"):"-";
@@ -187,7 +189,8 @@ async function refresh(){
  renderKids();await renderForms();
 }
 function renderKids(){
- $("#childList").innerHTML=kids.length?kids.map(k=>`<div class="item"><b>${k.name}</b> <span class="tag gray">${k.grade||"-"}</span><div class="mut">${k.guardian_name||"-"} · ${k.guardian_phone||"-"} ${k.family_group?`· 👨‍👩‍👧 ${k.family_group}`:""}</div></div>`).join(""):'<div class="mut">등록된 아동이 없습니다.</div>';
+ $("#childList").innerHTML=kids.length?kids.map(k=>`<div class="item child-item"><div><b>${esc(k.name)}</b> <span class="tag gray">${esc(k.grade||"-")}</span> ${k.active?'':'<span class="tag red">비활성</span>'}<div class="mut">${esc(k.guardian_name||"-")} · ${esc(k.guardian_phone||"-")} ${k.family_group?`· 👨‍👩‍👧 ${esc(k.family_group)}`:""}</div></div><button type="button" class="btn child-edit editChild" data-id="${k.id}" aria-label="${esc(k.name)} 정보 수정">✏️ 정보 수정</button></div>`).join(""):'<div class="mut">등록된 아동이 없습니다.</div>';
+ $$(".editChild").forEach(b=>b.onclick=()=>openChildEditor(b.dataset.id));
 }
 async function renderForms(){
  let out=[];
@@ -201,8 +204,22 @@ async function renderForms(){
 }
 $$(".tab").forEach(t=>t.onclick=()=>{$$(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");["formsView","childrenView"].forEach(v=>$("#"+v).classList.toggle("hidden",v!==t.dataset.view))});
 $("#seedBtn").onclick=async()=>{let {data,error}=await sb.rpc("seed_demo_children");if(error)return alert(error.message);toast(data?`${data}명 등록 완료`:"이미 아동이 있습니다.");await refresh()};
-$("#newChildBtn").onclick=()=>$("#childModal").classList.remove("hidden");$("#childCancel").onclick=()=>$("#childModal").classList.add("hidden");
-$("#childSave").onclick=async()=>{if(!$("#cName").value.trim()||!$("#cPhone").value.trim())return alert("이름과 보호자 연락처를 입력하세요.");let {error}=await sb.from("children").insert({center_id:centerId,name:$("#cName").value.trim(),grade:$("#cGrade").value.trim(),guardian_name:$("#cGuardian").value.trim(),guardian_phone:$("#cPhone").value.trim(),family_group:$("#cFamily").value.trim()||null});if(error)return alert(error.message);$("#childModal").classList.add("hidden");await refresh();toast("등록 완료")};
+function openChildEditor(id=null){
+ editingChildId=id;let k=id?kids.find(x=>x.id===id):null;
+ $("#childModalTitle").textContent=k?"아동 정보 수정":"아동 등록";$("#childSave").textContent=k?"수정 저장":"등록";
+ $("#cName").value=k?.name||"";$("#cGrade").value=k?.grade||"";$("#cGuardian").value=k?.guardian_name||"";$("#cPhone").value=k?.guardian_phone||"";$("#cFamily").value=k?.family_group||"";$("#cActive").value=String(k?.active??true);
+ $("#childModal").classList.remove("hidden");
+}
+$("#newChildBtn").onclick=()=>openChildEditor();$("#childCancel").onclick=()=>{$("#childModal").classList.add("hidden");editingChildId=null};
+$("#childSave").onclick=async()=>{
+ if(!$("#cName").value.trim()||!$("#cPhone").value.trim())return alert("이름과 보호자 연락처를 입력하세요.");
+ let payload={name:$("#cName").value.trim(),grade:$("#cGrade").value.trim()||null,guardian_name:$("#cGuardian").value.trim()||null,guardian_phone:$("#cPhone").value.trim(),family_group:$("#cFamily").value.trim()||null,active:$("#cActive").value==="true"};
+ const button=$("#childSave");button.disabled=true;
+ try{
+ let result=editingChildId?await sb.from("children").update(payload).eq("id",editingChildId).eq("center_id",centerId).select("id").single():await sb.from("children").insert({...payload,center_id:centerId}).select("id").single();
+ if(result.error)throw result.error;if(!result.data?.id)throw new Error("저장된 항목을 확인하지 못했습니다. 센터 권한을 확인해 주세요.");let wasEdit=!!editingChildId;editingChildId=null;$("#childModal").classList.add("hidden");await refresh();toast(wasEdit?"수정 완료":"등록 완료");
+ }catch(e){alert("아동 정보 저장 실패: "+e.message)}finally{button.disabled=false}
+};
 
 $("#newFormBtn").onclick=()=>{
  if(!kids.length)return alert("먼저 아동 명단을 등록하세요.");
@@ -263,11 +280,30 @@ function openSignedDocument(f,x){
   <div class="signed-choice">${choice}</div>
   ${r.note?`<table class="signed-table"><tr><th>전달사항</th><td>${esc(r.note)}</td></tr></table>`:""}
   <div class="signed-signature"><div><b>제출일시</b><br>${esc(fmt(r.submitted_at))}<br><br><b>보호자</b>　${esc(r.signer_name)}　(서명)</div><img src="${r.signature_data_url}" alt="${esc(r.signer_name)} 보호자 전자서명"></div>
-  <div class="signed-foot">전자서명 기록 · 서명시각 ${esc(fmt(r.signature_captured_at||r.submitted_at))}<br>서명 확인값(SHA-256): ${esc(r.signature_hash||"-")}</div>`;
+ <div class="signed-foot">전자서명 기록 · 서명시각 ${esc(fmt(r.signature_captured_at||r.submitted_at))}<br>서명 확인값(SHA-256): ${esc(r.signature_hash||"-")}</div>`;
  $("#signedDocumentModal").classList.remove("hidden");
+ let sheet=$("#signedDocumentModal .sheet");sheet.scrollTop=0;setPdfScale(90);
 }
 $("#signedDocumentClose").onclick=()=>$("#signedDocumentModal").classList.add("hidden");
-$("#printSignedDocument").onclick=()=>window.print();
+function setPdfScale(value){
+ let input=$("#pdfScale"),v=Math.max(+input.min,Math.min(+input.max,+value||90));input.value=v;$("#pdfScaleValue").textContent=v+"%";$("#signedDocument").style.zoom=String(v/100);
+}
+$("#pdfScale").oninput=e=>setPdfScale(e.target.value);
+$("#pdfScaleDown").onclick=()=>setPdfScale(+$(`#pdfScale`).value-5);
+$("#pdfScaleUp").onclick=()=>setPdfScale(+$(`#pdfScale`).value+5);
+$("#printSignedDocument").onclick=async()=>{
+ let popup=window.open("","_blank");if(!popup)return alert("팝업이 차단되었습니다. 이 사이트의 팝업을 허용해 주세요.");
+ popup.document.write('<!doctype html><meta charset="utf-8"><title>문서 생성 중</title><div style="font-family:sans-serif;padding:30px">A4 문서를 생성하고 있습니다...</div>');
+ try{
+  const {default:html2canvas}=await import('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm');
+  await document.fonts.ready;
+  await Promise.all([...$("#signedDocument").querySelectorAll("img")].map(im=>im.decode()));
+  let el=$("#signedDocument"),previewZoom=el.style.zoom;el.style.zoom="1";
+  let canvas=await html2canvas(el,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false,width:el.scrollWidth,height:el.scrollHeight,windowWidth:el.scrollWidth,windowHeight:el.scrollHeight});el.style.zoom=previewZoom;
+  let img=canvas.toDataURL("image/png",1),scale=+$("#pdfScale").value||96,title=esc($("#signedDocument .signed-title h2")?.textContent||"전자서명 동의서");
+  popup.document.open();popup.document.write(`<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>${title}</title><style>@page{size:A4 portrait;margin:10mm}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff;width:100%;height:100%;overflow:hidden}.page{width:190mm;height:275mm;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}.page img{display:block;max-width:${scale}%;max-height:${scale}%;width:auto;height:auto;object-fit:contain;object-position:top center}@media print{html,body{width:210mm;height:297mm;overflow:hidden}.page{break-after:avoid;page-break-after:avoid}}</style></head><body><div class="page"><img id="pageImage" src="${img}"></div><script>document.getElementById('pageImage').onload=()=>setTimeout(()=>window.print(),250);<\/script></body></html>`);popup.document.close();
+ }catch(e){popup.close();alert("PDF 문서 생성 오류: "+e.message)}finally{setPdfScale($("#pdfScale").value)}
+};
 
 async function loadPublic(){
  show("publicView");$("#headerRight").textContent="보호자용";
