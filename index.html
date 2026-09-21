@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#174b5a">
+<title>SafeConsent - 온라인 참가 동의서</title>
+<style>
+:root{--n:#174b5a;--n2:#28758b;--g:#278760;--r:#c94b4b;--o:#d69030;--bg:#f3f7f8;--line:#dbe5e8;--mut:#72848a;--ink:#18343d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:var(--ink)}button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{background:linear-gradient(135deg,var(--n),var(--n2));color:#fff;padding:16px;position:sticky;top:0;z-index:20}.head{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}h1{margin:0;font-size:23px}header small{opacity:.82}
+main{max-width:1100px;margin:auto;padding:13px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:11px}.hero{background:linear-gradient(135deg,#fff,#edf8fa)}.hero h2{margin:0 0 6px;font-size:24px}.mut{color:var(--mut);font-size:12px}.btn{border:0;border-radius:12px;padding:10px 13px;font-weight:850}.primary{background:var(--n);color:#fff}.gold{background:#efbf53;color:#44330d}.soft{background:#e6eef0;color:var(--n)}.danger{background:#fde5e5;color:#a63d3d}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.tabs{display:flex;gap:7px;overflow:auto;margin-bottom:11px}.tab{border:0;border-radius:999px;padding:9px 12px;background:#e5edef;font-weight:850;white-space:nowrap}.tab.on{background:var(--n);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}.stat small{color:var(--mut)}.stat b{display:block;font-size:22px;margin-top:3px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:9px}.form label{font-size:12px;color:var(--mut);font-weight:750}.form input,.form textarea,.form select{width:100%;margin-top:4px;padding:10px;border:1px solid #cbd9dd;border-radius:10px}.form textarea{min-height:105px}.full{grid-column:1/-1}
+.item{border:1px solid var(--line);border-radius:14px;padding:11px;margin-top:8px}.item h3{margin:0 0 4px;font-size:16px}.tag{display:inline-block;padding:4px 7px;border-radius:999px;font-size:10px;font-weight:900}.green{background:#dff3e9;color:#24704e}.red{background:#fde4e4;color:#a63d3d}.orange{background:#fff0d5;color:#97641d}.gray{background:#edf1f2;color:#65747a}
+.childgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-height:330px;overflow:auto}.childpick{border:1px solid var(--line);border-radius:11px;padding:9px;display:flex;gap:7px;align-items:center}.childpick input{width:18px;height:18px}
+.login{max-width:470px;margin:7vh auto}.hidden{display:none!important}.notice{padding:10px;border:1px solid #ead6a3;background:#fff7df;color:#735c30;border-radius:11px;margin:8px 0;font-size:12px}.success{background:#eaf8f1;border-color:#bce1cf;color:#266e4e}
+.modal{position:fixed;inset:0;background:#10262dcc;z-index:100;display:flex;align-items:flex-end;justify-content:center}.sheet{width:min(760px,100%);background:#fff;border-radius:22px 22px 0 0;padding:17px;max-height:92vh;overflow:auto}
+.doc{max-width:720px;margin:auto;background:#fff;border:1px solid #d6dfe2;border-radius:19px;padding:22px;box-shadow:0 10px 35px #23414c10}.dochead{text-align:center;border-bottom:2px solid var(--n);padding-bottom:14px;margin-bottom:15px}.dochead h2{font-size:27px;margin:5px 0}.docno{font-size:11px;color:var(--mut)}.docinfo{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0}.docinfo div{padding:9px;border-bottom:1px solid var(--line)}.docinfo div:nth-child(odd){border-right:1px solid var(--line)}.section{margin:17px 0}.section h3{font-size:15px;margin:0 0 7px;color:var(--n)}.papertext{white-space:pre-wrap;line-height:1.8}.verifybox{background:#f5f9fa;border:1px solid var(--line);border-radius:15px;padding:13px;margin-top:16px}
+.signature-wrap{margin-top:13px}.signature-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}.signature-box{position:relative;border:2px dashed #9fb4ba;border-radius:14px;background:#fff;overflow:hidden;touch-action:none}.signature-box canvas{display:block;width:100%;height:180px;touch-action:none}.signature-guide{position:absolute;left:14px;right:14px;bottom:35px;border-top:1px solid #d6e0e3;pointer-events:none}.signature-hint{position:absolute;inset:0;display:grid;place-items:center;color:#9aabb0;font-weight:800;pointer-events:none}.signature-preview{max-width:220px;max-height:90px;border:1px solid var(--line);border-radius:9px;background:#fff;margin-top:6px}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}.choice button{border:2px solid var(--line);background:#fff;border-radius:15px;padding:15px;font-weight:900}.choice .agree.on{background:#eaf8f1;border-color:var(--g);color:var(--g)}.choice .decline.on{background:#fff0f0;border-color:var(--r);color:var(--r)}
+.resultrow{display:grid;grid-template-columns:1.2fr 100px 1fr 140px;gap:7px;align-items:center;border-bottom:1px solid #edf1f2;padding:9px 4px}.linkbox{background:#f5f9fa;border:1px solid var(--line);border-radius:10px;padding:9px;font-size:11px;word-break:break-all}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(18px);opacity:0;background:var(--n);color:#fff;padding:10px 14px;border-radius:999px;transition:.2s;z-index:200}.toast.show{opacity:1;transform:translateX(-50%)}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}.childgrid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.resultrow{grid-template-columns:1fr 85px}.resultrow>div:nth-child(3){grid-column:1/-1}}
+@media(max-width:440px){.childgrid{grid-template-columns:1fr}.choice{grid-template-columns:1fr}.doc{padding:14px}.docinfo{grid-template-columns:1fr}.docinfo div:nth-child(odd){border-right:0}.dochead h2{font-size:22px}}
+</style>
+</head>
+<body>
+<header><div class="head"><div><h1>📝 SafeConsent</h1><small>지역아동센터 온라인 참가 동의서</small></div><div id="headerRight"></div></div></header>
+<main>
+<section id="setupView" class="login hidden">
+ <div class="card hero"><h2>Supabase 연결</h2><div class="mut">Project URL과 Publishable/Anon Key를 입력합니다. Service Role Key는 넣지 마세요.</div>
+ <div class="form" style="margin-top:10px"><label class="full">Project URL<input id="sbUrl" placeholder="https://xxxxx.supabase.co"></label><label class="full">Publishable / Anon Key<input id="sbKey" type="password"></label></div>
+ <button class="btn primary" id="saveConfig" style="margin-top:10px">저장 후 연결</button></div>
+</section>
+
+<section id="loginView" class="login hidden">
+ <div class="card hero"><h2>센터 직원 로그인</h2><div class="form"><label class="full">이메일<input id="email" type="email"></label><label class="full">비밀번호<input id="password" type="password"></label></div>
+ <div class="row" style="margin-top:10px"><button class="btn primary" id="loginBtn">로그인</button><button class="btn soft" id="signupBtn">첫 계정 만들기</button><button class="btn danger" id="resetConfig">DB설정 초기화</button></div><div id="authMsg" class="notice hidden"></div></div>
+</section>
+
+<section id="adminView" class="hidden">
+ <div class="tabs"><button class="tab on" data-view="formsView">동의서 관리</button><button class="tab" data-view="childrenView">아동 명단</button></div>
+ <section id="formsView">
+  <div class="card hero row between"><div><h2 style="margin:0">참가 동의서 관리</h2><div class="mut">동의서 1개당 단톡방에 올릴 공용 링크 1개가 생성됩니다.</div></div><button class="btn gold" id="newFormBtn">+ 새 동의서</button></div>
+  <div class="stats"><div class="stat"><small>전체 동의서</small><b id="statForms">0</b></div><div class="stat"><small>응답중</small><b id="statOpen">0</b></div><div class="stat"><small>등록 아동</small><b id="statChildren">0</b></div><div class="stat"><small>오늘 응답</small><b id="statToday">0</b></div></div>
+  <div class="card"><h3 style="margin-top:0">동의서 목록</h3><div id="formList"></div></div>
+ </section>
+ <section id="childrenView" class="hidden">
+  <div class="card row between"><div><h2 style="margin:0">아동 명단</h2><div class="mut">보호자 휴대전화 뒤 4자리 확인에 사용됩니다.</div></div><div class="row"><button class="btn soft" id="seedBtn">가상 30명 넣기</button><button class="btn gold" id="newChildBtn">+ 아동등록</button></div></div>
+  <div class="card" id="childList"></div>
+ </section>
+</section>
+
+<section id="publicView" class="hidden">
+ <div class="doc">
+  <div class="dochead"><div class="docno" id="pDocNo"></div><h2 id="pTitle"></h2><b id="pCenter"></b></div>
+  <div class="docinfo"><div><small>행사일</small><br><b id="pDate"></b></div><div><small>시간</small><br><b id="pTime"></b></div><div><small>장소</small><br><b id="pLocation"></b></div><div><small>응답기한</small><br><b id="pDeadline"></b></div></div>
+  <div class="section"><h3>■ 프로그램 목적</h3><div class="papertext" id="pPurpose"></div></div>
+  <div class="section"><h3>■ 프로그램 안내</h3><div class="papertext" id="pContent"></div></div>
+  <div class="section"><h3>■ 유의사항</h3><div class="papertext" id="pPrecautions"></div></div>
+  <div class="section"><h3>■ 참가 동의</h3><div class="papertext" id="pStatement"></div></div>
+
+  <div id="verifyStep" class="verifybox">
+   <b>보호자 확인</b><div class="mut">단톡방 공용 링크이므로 자녀 이름과 등록된 보호자 휴대전화 뒤 4자리로 확인합니다.</div>
+   <div class="form" style="margin-top:9px"><label>자녀 이름<input id="verifyName" placeholder="김민수"></label><label>휴대전화 뒤 4자리<input id="verifyPhone" maxlength="4" inputmode="numeric" placeholder="5001"></label></div>
+   <button class="btn primary" id="verifyBtn" style="margin-top:9px;width:100%">자녀 확인</button>
+   <div id="verifyMsg" class="notice hidden"></div>
+  </div>
+
+  <div id="responseStep" class="hidden">
+   <div class="notice success" id="verifiedChild"></div>
+   <div class="choice"><button class="agree" id="agreeBtn">✅ 참가에 동의합니다</button><button class="decline" id="declineBtn">❌ 참가하지 않습니다</button></div>
+   <div class="form"><label class="full">보호자 성명<input id="signer" autocomplete="name"></label><label class="full">센터 전달사항(선택)<textarea id="parentNote"></textarea></label></div>
+   <div class="signature-wrap">
+    <div class="signature-head"><div><b>보호자 서명</b><div class="mut">아래 칸에 손가락 또는 마우스로 서명해 주세요.</div></div><button class="btn soft" type="button" id="clearSignature">다시 쓰기</button></div>
+    <div class="signature-box"><canvas id="signatureCanvas" aria-label="보호자 서명 입력란"></canvas><div class="signature-guide"></div><div class="signature-hint" id="signatureHint">여기에 서명해 주세요</div></div>
+   </div>
+   <div id="existingResponse" class="notice hidden"></div>
+   <div class="notice">제출 시 동의서 문서번호·버전, 자녀, 동의 여부, 보호자 성명, 제출 시간이 데이터베이스에 기록됩니다.</div>
+   <button class="btn primary" id="submitBtn" style="width:100%">동의서 제출</button>
+  </div>
+ </div>
+</section>
+</main>
+
+<div class="modal hidden" id="formModal"><div class="sheet">
+ <h2>새 참가 동의서</h2>
+ <div class="form">
+  <label>문서번호<input id="fDocNo"></label><label>버전<input id="fVersion" type="number" value="1" min="1"></label>
+  <label class="full">제목<input id="fTitle" value="여름방학 물놀이 프로그램 참가 동의서"></label>
+  <label>행사일<input id="fDate" type="date"></label><label>시간<input id="fTime" value="09:30 ~ 17:00"></label>
+  <label>장소<input id="fLocation" value="○○ 워터파크"></label><label>응답기한<input id="fDeadline" type="datetime-local"></label>
+  <label class="full">프로그램 목적<textarea id="fPurpose">아동들의 건강한 여가활동과 또래 간 긍정적인 관계 형성을 위해 여름방학 물놀이 체험 프로그램을 진행합니다.</textarea></label>
+  <label class="full">프로그램 안내<textarea id="fContent">1. 센터에서 집결 후 차량으로 이동합니다.
+2. 현장 안전교육 후 물놀이 프로그램을 진행합니다.
+3. 점심식사 및 간식이 제공됩니다.
+4. 프로그램 종료 후 센터로 복귀합니다.
+
+준비물: 수영복, 수건, 여벌옷, 개인 물병</textarea></label>
+  <label class="full">유의사항<textarea id="fPrecautions">아동의 건강상 특이사항이나 물놀이 참여 시 주의할 사항이 있는 경우 전달사항에 반드시 작성해 주세요. 당일 건강상태에 따라 프로그램 참여가 제한될 수 있습니다.</textarea></label>
+  <label class="full">동의 문구<textarea id="fStatement">위 프로그램의 일정, 장소, 활동내용 및 유의사항을 확인하였으며, 자녀의 프로그램 참가 여부에 대해 아래와 같이 의사를 표시합니다.</textarea></label>
+ </div>
+ <div class="row between"><h3>대상 아동</h3><button class="btn soft" id="selectAll">전체선택</button></div>
+ <div class="childgrid" id="recipientPicker"></div>
+ <div class="row" style="margin-top:12px"><button class="btn soft" id="formCancel">취소</button><button class="btn primary" id="formSave">동의서 생성</button></div>
+</div></div>
+
+<div class="modal hidden" id="detailModal"><div class="sheet">
+ <div class="row between"><div><h2 id="dTitle" style="margin:0"></h2><div class="mut" id="dMeta"></div></div><button class="btn soft" id="detailClose">닫기</button></div>
+ <div class="linkbox" id="publicLink" style="margin-top:10px"></div>
+ <div class="row" style="margin-top:8px"><button class="btn gold" id="copyPublicLink">📋 단톡방 링크 복사</button><button class="btn soft" id="copyKakaoText">카톡 안내문 복사</button></div>
+ <div class="stats" style="margin-top:12px"><div class="stat"><small>대상</small><b id="dTotal">0</b></div><div class="stat"><small>동의</small><b id="dAgree">0</b></div><div class="stat"><small>미동의</small><b id="dDecline">0</b></div><div class="stat"><small>미응답</small><b id="dPending">0</b></div></div>
+ <div id="responseList" style="margin-top:10px"></div>
+</div></div>
+
+<div class="modal hidden" id="childModal"><div class="sheet">
+ <h2>아동 등록</h2>
+ <div class="form"><label>이름<input id="cName"></label><label>학년<input id="cGrade"></label><label>보호자 이름<input id="cGuardian"></label><label>보호자 연락처<input id="cPhone" placeholder="010-1234-5678"></label><label>가족그룹<input id="cFamily"></label></div>
+ <div class="row" style="margin-top:12px"><button class="btn soft" id="childCancel">취소</button><button class="btn primary" id="childSave">등록</button></div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script src="./config.js"></script>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const CFG='safeconsent-v2-config';
+let sb=null,centerId=null,kids=[],forms=[],publicToken=null,publicForm=null,verified=null,decision=null,signaturePad=null;
+const show=id=>["setupView","loginView","adminView","publicView"].forEach(x=>$("#"+x).classList.toggle("hidden",x!==id));
+const toast=m=>{let t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1400)};
+const fmt=v=>v?new Date(v).toLocaleString("ko-KR"):"-";
+const one=v=>Array.isArray(v)?(v[0]||null):(v||null);
+const config=()=>{try{return JSON.parse(localStorage.getItem(CFG)||"null")}catch{return null}};
+const base=()=>location.origin+location.pathname;
+function init(){let baked=window.SAFE_CONSENT_CONFIG||{},c=(baked.url&&baked.key&&!baked.url.includes("YOUR_PROJECT"))?baked:config();if(!c?.url||!c?.key)return false;sb=createClient(c.url,c.key);return true}
+async function copy(t){try{await navigator.clipboard.writeText(t);toast("복사했습니다.")}catch{prompt("복사하세요",t)}}
+
+async function boot(){
+ publicToken=new URLSearchParams(location.search).get("consent");
+ if(!init()){show("setupView");return}
+ if(publicToken){await loadPublic();return}
+ const {data:{session}}=await sb.auth.getSession();
+ session?await enterAdmin():show("loginView");
+}
+$("#saveConfig").onclick=()=>{let url=$("#sbUrl").value.trim(),key=$("#sbKey").value.trim();if(!url||!key)return alert("URL과 Key를 입력하세요.");localStorage.setItem(CFG,JSON.stringify({url,key}));location.reload()};
+$("#resetConfig").onclick=()=>{localStorage.removeItem(CFG);location.reload()};
+$("#loginBtn").onclick=async()=>{let {error}=await sb.auth.signInWithPassword({email:$("#email").value.trim(),password:$("#password").value});if(error)return authMsg(error.message);await enterAdmin()};
+$("#signupBtn").onclick=async()=>{let {data,error}=await sb.auth.signUp({email:$("#email").value.trim(),password:$("#password").value});if(error)return authMsg(error.message);authMsg(data.session?"계정 생성 완료":"가입 확인 메일이 있다면 확인 후 로그인하세요.");if(data.session)await enterAdmin()};
+function authMsg(m){$("#authMsg").textContent=m;$("#authMsg").classList.remove("hidden")}
+
+async function enterAdmin(){
+ show("adminView");
+ $("#headerRight").innerHTML='<button class="btn soft" id="logout">로그아웃</button>';
+ $("#logout").onclick=async()=>{await sb.auth.signOut();location.reload()};
+ let {data:m}=await sb.from("center_members").select("center_id").limit(1);
+ if(!m?.length){
+   let n=prompt("센터 이름","해봄 지역아동센터")||"해봄 지역아동센터";
+   let {data,error}=await sb.rpc("bootstrap_center",{p_name:n});if(error)return alert(error.message);centerId=data;
+ } else centerId=m[0].center_id;
+ await refresh();
+}
+async function refresh(){
+ let [{data:k,error:ke},{data:f,error:fe},{data:r}]=await Promise.all([
+  sb.from("children").select("*").eq("center_id",centerId).order("name"),
+  sb.from("consent_forms").select("*").eq("center_id",centerId).order("created_at",{ascending:false}),
+  sb.from("consent_responses").select("submitted_at")
+ ]);
+ if(ke||fe)return alert((ke||fe).message);
+ kids=k||[];forms=f||[];
+ $("#statForms").textContent=forms.length;$("#statOpen").textContent=forms.filter(x=>x.status==="open").length;$("#statChildren").textContent=kids.filter(x=>x.active).length;
+ let today=new Date().toISOString().slice(0,10);$("#statToday").textContent=(r||[]).filter(x=>x.submitted_at?.slice(0,10)===today).length;
+ renderKids();await renderForms();
+}
+function renderKids(){
+ $("#childList").innerHTML=kids.length?kids.map(k=>`<div class="item"><b>${k.name}</b> <span class="tag gray">${k.grade||"-"}</span><div class="mut">${k.guardian_name||"-"} · ${k.guardian_phone||"-"} ${k.family_group?`· 👨‍👩‍👧 ${k.family_group}`:""}</div></div>`).join(""):'<div class="mut">등록된 아동이 없습니다.</div>';
+}
+async function renderForms(){
+ let out=[];
+ for(let f of forms){
+  let {data:r}=await sb.from("consent_recipients").select("id,consent_responses(decision)").eq("form_id",f.id);
+  let total=r?.length||0,ag=(r||[]).filter(x=>one(x.consent_responses)?.decision==="agree").length,de=(r||[]).filter(x=>one(x.consent_responses)?.decision==="decline").length;
+  out.push(`<div class="item"><div class="row between"><div><h3>${f.title}</h3><div class="mut">${f.document_no} · 행사 ${f.event_date||"-"} · 응답기한 ${fmt(f.deadline)}</div></div><span class="tag ${f.status==="open"?"green":"gray"}">${f.status==="open"?"응답중":"마감"}</span></div><div class="row" style="margin-top:7px"><span class="tag gray">대상 ${total}</span><span class="tag green">동의 ${ag}</span><span class="tag red">미동의 ${de}</span><span class="tag orange">미응답 ${total-ag-de}</span><button class="btn soft detailForm" data-id="${f.id}">관리</button></div></div>`);
+ }
+ $("#formList").innerHTML=out.join("")||'<div class="mut">아직 동의서가 없습니다.</div>';
+ $$(".detailForm").forEach(b=>b.onclick=()=>openDetail(b.dataset.id));
+}
+$$(".tab").forEach(t=>t.onclick=()=>{$$(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");["formsView","childrenView"].forEach(v=>$("#"+v).classList.toggle("hidden",v!==t.dataset.view))});
+$("#seedBtn").onclick=async()=>{let {data,error}=await sb.rpc("seed_demo_children");if(error)return alert(error.message);toast(data?`${data}명 등록 완료`:"이미 아동이 있습니다.");await refresh()};
+$("#newChildBtn").onclick=()=>$("#childModal").classList.remove("hidden");$("#childCancel").onclick=()=>$("#childModal").classList.add("hidden");
+$("#childSave").onclick=async()=>{if(!$("#cName").value.trim()||!$("#cPhone").value.trim())return alert("이름과 보호자 연락처를 입력하세요.");let {error}=await sb.from("children").insert({center_id:centerId,name:$("#cName").value.trim(),grade:$("#cGrade").value.trim(),guardian_name:$("#cGuardian").value.trim(),guardian_phone:$("#cPhone").value.trim(),family_group:$("#cFamily").value.trim()||null});if(error)return alert(error.message);$("#childModal").classList.add("hidden");await refresh();toast("등록 완료")};
+
+$("#newFormBtn").onclick=()=>{
+ if(!kids.length)return alert("먼저 아동 명단을 등록하세요.");
+ let now=new Date();$("#fDocNo").value=`SC-${now.getFullYear()}-${String(forms.length+1).padStart(3,"0")}`;
+ $("#recipientPicker").innerHTML=kids.filter(k=>k.active).map(k=>`<label class="childpick"><input type="checkbox" value="${k.id}"><span><b>${k.name}</b><br><small>${k.grade||""} · ${k.guardian_name||""}</small></span></label>`).join("");
+ $("#formModal").classList.remove("hidden");
+};
+$("#selectAll").onclick=()=>$$('#recipientPicker input').forEach(x=>x.checked=true);
+$("#formCancel").onclick=()=>$("#formModal").classList.add("hidden");
+$("#formSave").onclick=async()=>{
+ let ids=$$('#recipientPicker input:checked').map(x=>x.value);
+ if(!$("#fTitle").value.trim()||!$("#fContent").value.trim()||!ids.length)return alert("제목, 안내내용, 대상 아동을 확인하세요.");
+ let {data:{user}}=await sb.auth.getUser();
+ let payload={center_id:centerId,document_no:$("#fDocNo").value.trim(),document_version:+$("#fVersion").value||1,title:$("#fTitle").value.trim(),event_date:$("#fDate").value||null,event_time:$("#fTime").value.trim()||null,location:$("#fLocation").value.trim()||null,deadline:$("#fDeadline").value?new Date($("#fDeadline").value).toISOString():null,purpose:$("#fPurpose").value.trim(),content:$("#fContent").value.trim(),precautions:$("#fPrecautions").value.trim(),consent_statement:$("#fStatement").value.trim(),status:"open",created_by:user.id};
+ let {data:f,error}=await sb.from("consent_forms").insert(payload).select().single();if(error)return alert(error.message);
+ let {error:re}=await sb.from("consent_recipients").insert(ids.map(child_id=>({form_id:f.id,child_id})));if(re)return alert(re.message);
+ $("#formModal").classList.add("hidden");await refresh();toast("동의서 생성 완료");
+};
+
+async function openDetail(id){
+ let f=forms.find(x=>x.id===id),link=base()+"?consent="+f.public_token;
+ $("#dTitle").textContent=f.title;$("#dMeta").textContent=`${f.document_no} · ${f.event_date||"-"} · ${f.location||"-"}`;$("#publicLink").textContent=link;
+ let {data,error}=await sb.from("consent_recipients").select("id,children(name,grade,guardian_name,guardian_phone),consent_responses(decision,signer_name,note,submitted_at,signature_data_url)").eq("form_id",id);if(error)return alert(error.message);
+ let ag=0,de=0;data.forEach(x=>{let r=one(x.consent_responses);if(r?.decision==="agree")ag++;if(r?.decision==="decline")de++});
+ $("#dTotal").textContent=data.length;$("#dAgree").textContent=ag;$("#dDecline").textContent=de;$("#dPending").textContent=data.length-ag-de;
+ $("#responseList").innerHTML=data.map(x=>{let r=one(x.consent_responses),s=r?.decision==="agree"?'<span class="tag green">동의</span>':r?.decision==="decline"?'<span class="tag red">미동의</span>':'<span class="tag orange">미응답</span>';return `<div class="resultrow"><div><b>${x.children.name}</b><div class="mut">${x.children.guardian_name||"-"}</div></div><div>${s}</div><div class="mut">${r?`<b>${r.signer_name}</b> · ${fmt(r.submitted_at)}${r.signature_data_url?`<br><img class="signature-preview" src="${r.signature_data_url}" alt="${r.signer_name} 보호자 서명">`:"<br><span class='tag orange'>서명 없음</span>"}${r.note?`<br>전달사항: ${r.note}`:""}<br><button class="btn soft editResponse" style="margin-top:6px;padding:6px 9px" data-recipient="${x.id}" data-decision="${r.decision}" data-signer="${encodeURIComponent(r.signer_name||"")}" data-note="${encodeURIComponent(r.note||"")}">응답 수정</button>`:"아직 제출하지 않음"}</div><div>${x.children.guardian_phone||""}</div></div>`}).join("");
+  $$(".editResponse").forEach(b=>b.onclick=async()=>{
+    let d=prompt("응답을 입력하세요: agree(동의) / decline(미동의)",b.dataset.decision);
+    if(d===null)return;
+    d=d.trim().toLowerCase();
+    if(!["agree","decline"].includes(d))return alert("agree 또는 decline만 입력하세요.");
+    let signer=prompt("보호자 성명",decodeURIComponent(b.dataset.signer||""));
+    if(signer===null||!signer.trim())return;
+    let note=prompt("센터 전달사항(없으면 빈칸)",decodeURIComponent(b.dataset.note||""));
+    if(note===null)return;
+    let {error}=await sb.rpc("admin_update_consent_response",{p_recipient_id:b.dataset.recipient,p_decision:d,p_signer_name:signer.trim(),p_note:note.trim()||null});
+    if(error)return alert("수정 오류: "+error.message);
+    toast("응답을 수정했습니다.");
+    await refresh();
+    await openDetail(id);
+  });
+ $("#copyPublicLink").onclick=()=>copy(link);
+ $("#copyKakaoText").onclick=()=>copy(`📢 ${f.title}\n\n보호자님께서는 아래 링크에서 안내 내용을 확인한 뒤 참가 여부를 제출해 주세요.\n\n${link}\n\n응답기한: ${fmt(f.deadline)}`);
+ $("#detailModal").classList.remove("hidden");
+}
+$("#detailClose").onclick=()=>$("#detailModal").classList.add("hidden");
+
+async function loadPublic(){
+ show("publicView");$("#headerRight").textContent="보호자용";
+ let {data,error}=await sb.rpc("get_public_consent_form",{p_token:publicToken});if(error||!data?.length){$("#publicView").innerHTML='<div class="card"><h2>유효하지 않은 동의서 링크입니다.</h2></div>';return}
+ publicForm=data[0];
+ $("#pDocNo").textContent=`문서번호 ${publicForm.document_no} · v${publicForm.document_version}`;$("#pTitle").textContent=publicForm.title;$("#pCenter").textContent=publicForm.center_name;$("#pDate").textContent=publicForm.event_date||"-";$("#pTime").textContent=publicForm.event_time||"-";$("#pLocation").textContent=publicForm.location||"-";$("#pDeadline").textContent=fmt(publicForm.deadline);$("#pPurpose").textContent=publicForm.purpose||"-";$("#pContent").textContent=publicForm.content;$("#pPrecautions").textContent=publicForm.precautions||"-";$("#pStatement").textContent=publicForm.consent_statement;
+ if(publicForm.form_status!=="open"){$("#verifyBtn").disabled=true;$("#verifyBtn").textContent="응답이 마감되었습니다."}
+}
+$("#verifyBtn").onclick=async()=>{
+ let name=$("#verifyName").value.trim(),last4=$("#verifyPhone").value.trim();if(!name||last4.length!==4)return alert("자녀 이름과 휴대전화 뒤 4자리를 입력하세요.");
+ let {data,error}=await sb.rpc("verify_public_consent_recipient",{p_token:publicToken,p_child_name:name,p_phone_last4:last4});
+ if(error||!data?.length){$("#verifyMsg").textContent="등록 정보와 일치하는 대상 아동을 찾지 못했습니다.";$("#verifyMsg").classList.remove("hidden");return}
+ verified={...data[0],name,last4};$("#verifyStep").classList.add("hidden");$("#responseStep").classList.remove("hidden");$("#verifiedChild").innerHTML=`✅ <b>${verified.child_name}</b> (${verified.grade||""}) 보호자 확인 완료`;$("#signer").value=verified.existing_signer||verified.guardian_name||"";$("#parentNote").value=verified.existing_note||"";requestAnimationFrame(()=>{signaturePad=makeSignaturePad($("#signatureCanvas"));signaturePad.clear()});
+ if(verified.existing_decision){decision=verified.existing_decision;selectDecision(decision);$("#existingResponse").textContent=`이미 ${decision==="agree"?"동의":"미동의"}로 제출된 기록이 있습니다. 다시 제출하면 최신 응답으로 갱신됩니다. (${fmt(verified.existing_submitted_at)})`;$("#existingResponse").classList.remove("hidden")}
+};
+function selectDecision(d){decision=d;$("#agreeBtn").classList.toggle("on",d==="agree");$("#declineBtn").classList.toggle("on",d==="decline")}
+$("#agreeBtn").onclick=()=>selectDecision("agree");$("#declineBtn").onclick=()=>selectDecision("decline");
+function makeSignaturePad(canvas){
+ const ctx=canvas.getContext("2d"),hint=$("#signatureHint");let drawing=false,empty=true,last=null;
+ const resize=()=>{const r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2),old=empty?null:canvas.toDataURL();canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0);ctx.lineWidth=2.4;ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle="#18343d";if(old){let im=new Image();im.onload=()=>ctx.drawImage(im,0,0,r.width,r.height);im.src=old}};
+ const point=e=>{const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}};
+ canvas.onpointerdown=e=>{e.preventDefault();canvas.setPointerCapture(e.pointerId);drawing=true;last=point(e);ctx.beginPath();ctx.moveTo(last.x,last.y)};
+ canvas.onpointermove=e=>{if(!drawing)return;e.preventDefault();let p=point(e),m={x:(last.x+p.x)/2,y:(last.y+p.y)/2};ctx.quadraticCurveTo(last.x,last.y,m.x,m.y);ctx.stroke();last=p;empty=false;hint.classList.add("hidden")};
+ const stop=e=>{if(!drawing)return;drawing=false;try{canvas.releasePointerCapture(e.pointerId)}catch{}};
+ canvas.onpointerup=stop;canvas.onpointercancel=stop;resize();window.addEventListener("resize",resize,{passive:true});
+ return{clear(){ctx.clearRect(0,0,canvas.width,canvas.height);empty=true;hint.classList.remove("hidden")},isEmpty(){return empty},data(){return canvas.toDataURL("image/png",0.85)}};
+}
+$("#clearSignature").onclick=()=>signaturePad?.clear();
+$("#submitBtn").onclick=async()=>{
+ if(!verified||!decision)return alert("동의 여부를 선택하세요.");if(!$("#signer").value.trim())return alert("보호자 성명을 입력하세요.");if(!signaturePad||signaturePad.isEmpty())return alert("보호자 서명을 입력하세요.");
+ let {error}=await sb.rpc("submit_public_consent_v3",{p_token:publicToken,p_child_name:verified.name,p_phone_last4:verified.last4,p_decision:decision,p_signer_name:$("#signer").value.trim(),p_signature_data_url:signaturePad.data(),p_note:$("#parentNote").value.trim()||null,p_user_agent:navigator.userAgent});
+ if(error)return alert("제출 오류: "+error.message);
+ $("#existingResponse").textContent=`✅ 동의서가 정상적으로 제출되었습니다. 현재 응답: ${decision==="agree"?"동의":"미동의"} · 보호자 ${$("#signer").value.trim()}${$("#parentNote").value.trim()?` · 전달사항: ${$("#parentNote").value.trim()}`:""}`;$("#existingResponse").className="notice success";toast("제출 완료");
+};
+
+boot();
+</script>
+</body>
+</html>
