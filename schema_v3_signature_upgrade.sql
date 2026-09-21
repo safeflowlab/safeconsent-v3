@@ -44,7 +44,7 @@ create or replace function public.submit_public_consent_v3(
 )
 returns boolean
 language plpgsql security definer
-set search_path=public
+set search_path=public,extensions
 as $$
 declare
   v_recipient uuid;

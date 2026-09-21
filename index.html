@@ -20,10 +20,12 @@ main{max-width:1100px;margin:auto;padding:13px}.card{background:#fff;border:1px 
 .doc{max-width:720px;margin:auto;background:#fff;border:1px solid #d6dfe2;border-radius:19px;padding:22px;box-shadow:0 10px 35px #23414c10}.dochead{text-align:center;border-bottom:2px solid var(--n);padding-bottom:14px;margin-bottom:15px}.dochead h2{font-size:27px;margin:5px 0}.docno{font-size:11px;color:var(--mut)}.docinfo{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0}.docinfo div{padding:9px;border-bottom:1px solid var(--line)}.docinfo div:nth-child(odd){border-right:1px solid var(--line)}.section{margin:17px 0}.section h3{font-size:15px;margin:0 0 7px;color:var(--n)}.papertext{white-space:pre-wrap;line-height:1.8}.verifybox{background:#f5f9fa;border:1px solid var(--line);border-radius:15px;padding:13px;margin-top:16px}
 .signature-wrap{margin-top:13px}.signature-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}.signature-box{position:relative;border:2px dashed #9fb4ba;border-radius:14px;background:#fff;overflow:hidden;touch-action:none}.signature-box canvas{display:block;width:100%;height:180px;touch-action:none}.signature-guide{position:absolute;left:14px;right:14px;bottom:35px;border-top:1px solid #d6e0e3;pointer-events:none}.signature-hint{position:absolute;inset:0;display:grid;place-items:center;color:#9aabb0;font-weight:800;pointer-events:none}.signature-preview{max-width:220px;max-height:90px;border:1px solid var(--line);border-radius:9px;background:#fff;margin-top:6px}
 .choice{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}.choice button{border:2px solid var(--line);background:#fff;border-radius:15px;padding:15px;font-weight:900}.choice .agree.on{background:#eaf8f1;border-color:var(--g);color:var(--g)}.choice .decline.on{background:#fff0f0;border-color:var(--r);color:var(--r)}
+.signed-paper{max-width:760px;margin:auto;background:#fff;color:#1d2b30;padding:34px 38px;border:1px solid #cfd9dc}.signed-title{text-align:center;border-bottom:2px solid #263b42;padding-bottom:16px;margin-bottom:20px}.signed-title h2{margin:5px 0;font-size:28px}.signed-table{width:100%;border-collapse:collapse;margin:14px 0}.signed-table th,.signed-table td{border:1px solid #bfcdd1;padding:10px;text-align:left;vertical-align:top}.signed-table th{width:105px;background:#f4f7f8}.signed-body{white-space:pre-wrap;line-height:1.8;min-height:52px}.signed-choice{margin:22px 0;padding:15px;border:2px solid var(--n);border-radius:8px;text-align:center;font-size:18px;font-weight:900}.signed-signature{display:flex;justify-content:flex-end;align-items:center;gap:15px;margin-top:38px}.signed-signature img{width:210px;height:90px;object-fit:contain;border-bottom:1px solid #65777d}.signed-foot{margin-top:24px;padding-top:12px;border-top:1px solid #d9e1e3;font-size:10px;color:#64777d;word-break:break-all}.print-actions{max-width:760px;margin:0 auto 10px;display:flex;justify-content:flex-end;gap:8px}
 .resultrow{display:grid;grid-template-columns:1.2fr 100px 1fr 140px;gap:7px;align-items:center;border-bottom:1px solid #edf1f2;padding:9px 4px}.linkbox{background:#f5f9fa;border:1px solid var(--line);border-radius:10px;padding:9px;font-size:11px;word-break:break-all}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(18px);opacity:0;background:var(--n);color:#fff;padding:10px 14px;border-radius:999px;transition:.2s;z-index:200}.toast.show{opacity:1;transform:translateX(-50%)}
 @media(max-width:700px){.stats{grid-template-columns:1fr 1fr}.childgrid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}.resultrow{grid-template-columns:1fr 85px}.resultrow>div:nth-child(3){grid-column:1/-1}}
 @media(max-width:440px){.childgrid{grid-template-columns:1fr}.choice{grid-template-columns:1fr}.doc{padding:14px}.docinfo{grid-template-columns:1fr}.docinfo div:nth-child(odd){border-right:0}.dochead h2{font-size:22px}}
+@media print{body *{visibility:hidden!important}#signedDocumentModal,#signedDocumentModal *{visibility:visible!important}#signedDocumentModal{position:absolute;inset:0;background:#fff;display:block!important}#signedDocumentModal .sheet{max-height:none;width:100%;padding:0;overflow:visible;border-radius:0}.print-actions{display:none!important}.signed-paper{border:0;max-width:none;padding:12mm;box-shadow:none}header,main{display:none!important}}
 </style>
 </head>
 <body>
@@ -115,6 +117,11 @@ main{max-width:1100px;margin:auto;padding:13px}.card{background:#fff;border:1px 
  <div id="responseList" style="margin-top:10px"></div>
 </div></div>
 
+<div class="modal hidden" id="signedDocumentModal"><div class="sheet">
+ <div class="print-actions"><button class="btn soft" id="signedDocumentClose">닫기</button><button class="btn primary" id="printSignedDocument">인쇄 / PDF 저장</button></div>
+ <article class="signed-paper" id="signedDocument"></article>
+</div></div>
+
 <div class="modal hidden" id="childModal"><div class="sheet">
  <h2>아동 등록</h2>
  <div class="form"><label>이름<input id="cName"></label><label>학년<input id="cGrade"></label><label>보호자 이름<input id="cGuardian"></label><label>보호자 연락처<input id="cPhone" placeholder="010-1234-5678"></label><label>가족그룹<input id="cFamily"></label></div>
@@ -129,11 +136,13 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const CFG='safeconsent-v2-config';
-let sb=null,centerId=null,kids=[],forms=[],publicToken=null,publicForm=null,verified=null,decision=null,signaturePad=null;
+let sb=null,centerId=null,centerName="지역아동센터",kids=[],forms=[],publicToken=null,publicForm=null,verified=null,decision=null,signaturePad=null;
 const show=id=>["setupView","loginView","adminView","publicView"].forEach(x=>$("#"+x).classList.toggle("hidden",x!==id));
 const toast=m=>{let t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1400)};
 const fmt=v=>v?new Date(v).toLocaleString("ko-KR"):"-";
 const one=v=>Array.isArray(v)?(v[0]||null):(v||null);
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const maskPhone=v=>{let n=String(v||"").replace(/\D/g,"");return n.length>=8?`${n.slice(0,3)}-****-${n.slice(-4)}`:"-"};
 const config=()=>{try{return JSON.parse(localStorage.getItem(CFG)||"null")}catch{return null}};
 const base=()=>location.origin+location.pathname;
 function init(){let baked=window.SAFE_CONSENT_CONFIG||{},c=(baked.url&&baked.key&&!baked.url.includes("YOUR_PROJECT"))?baked:config();if(!c?.url||!c?.key)return false;sb=createClient(c.url,c.key);return true}
@@ -161,6 +170,8 @@ async function enterAdmin(){
    let n=prompt("센터 이름","해봄 지역아동센터")||"해봄 지역아동센터";
    let {data,error}=await sb.rpc("bootstrap_center",{p_name:n});if(error)return alert(error.message);centerId=data;
  } else centerId=m[0].center_id;
+ let {data:center}=await sb.from("centers").select("name").eq("id",centerId).maybeSingle();
+ if(center?.name)centerName=center.name;
  await refresh();
 }
 async function refresh(){
@@ -214,10 +225,11 @@ $("#formSave").onclick=async()=>{
 async function openDetail(id){
  let f=forms.find(x=>x.id===id),link=base()+"?consent="+f.public_token;
  $("#dTitle").textContent=f.title;$("#dMeta").textContent=`${f.document_no} · ${f.event_date||"-"} · ${f.location||"-"}`;$("#publicLink").textContent=link;
- let {data,error}=await sb.from("consent_recipients").select("id,children(name,grade,guardian_name,guardian_phone),consent_responses(decision,signer_name,note,submitted_at,signature_data_url)").eq("form_id",id);if(error)return alert(error.message);
+ let {data,error}=await sb.from("consent_recipients").select("id,children(name,grade,guardian_name,guardian_phone),consent_responses(decision,signer_name,note,submitted_at,signature_data_url,signature_hash,signature_captured_at)").eq("form_id",id);if(error)return alert(error.message);
  let ag=0,de=0;data.forEach(x=>{let r=one(x.consent_responses);if(r?.decision==="agree")ag++;if(r?.decision==="decline")de++});
  $("#dTotal").textContent=data.length;$("#dAgree").textContent=ag;$("#dDecline").textContent=de;$("#dPending").textContent=data.length-ag-de;
- $("#responseList").innerHTML=data.map(x=>{let r=one(x.consent_responses),s=r?.decision==="agree"?'<span class="tag green">동의</span>':r?.decision==="decline"?'<span class="tag red">미동의</span>':'<span class="tag orange">미응답</span>';return `<div class="resultrow"><div><b>${x.children.name}</b><div class="mut">${x.children.guardian_name||"-"}</div></div><div>${s}</div><div class="mut">${r?`<b>${r.signer_name}</b> · ${fmt(r.submitted_at)}${r.signature_data_url?`<br><img class="signature-preview" src="${r.signature_data_url}" alt="${r.signer_name} 보호자 서명">`:"<br><span class='tag orange'>서명 없음</span>"}${r.note?`<br>전달사항: ${r.note}`:""}<br><button class="btn soft editResponse" style="margin-top:6px;padding:6px 9px" data-recipient="${x.id}" data-decision="${r.decision}" data-signer="${encodeURIComponent(r.signer_name||"")}" data-note="${encodeURIComponent(r.note||"")}">응답 수정</button>`:"아직 제출하지 않음"}</div><div>${x.children.guardian_phone||""}</div></div>`}).join("");
+ $("#responseList").innerHTML=data.map((x,i)=>{let r=one(x.consent_responses),s=r?.decision==="agree"?'<span class="tag green">동의</span>':r?.decision==="decline"?'<span class="tag red">미동의</span>':'<span class="tag orange">미응답</span>';return `<div class="resultrow"><div><b>${esc(x.children.name)}</b><div class="mut">${esc(x.children.guardian_name||"-")}</div></div><div>${s}</div><div class="mut">${r?`<b>${esc(r.signer_name)}</b> · ${fmt(r.submitted_at)}${r.signature_data_url?`<br><img class="signature-preview" src="${r.signature_data_url}" alt="보호자 서명">`:"<br><span class='tag orange'>서명 없음</span>"}${r.note?`<br>전달사항: ${esc(r.note)}`:""}<br><div class="row" style="margin-top:6px"><button class="btn primary signedDocumentBtn" style="padding:6px 9px" data-index="${i}">서명 문서 보기</button><button class="btn soft editResponse" style="padding:6px 9px" data-recipient="${x.id}" data-decision="${r.decision}" data-signer="${encodeURIComponent(r.signer_name||"")}" data-note="${encodeURIComponent(r.note||"")}">응답 수정</button></div>`:"아직 제출하지 않음"}</div><div>${maskPhone(x.children.guardian_phone)}</div></div>`}).join("");
+ $$(".signedDocumentBtn").forEach(b=>b.onclick=()=>openSignedDocument(f,data[+b.dataset.index]));
   $$(".editResponse").forEach(b=>b.onclick=async()=>{
     let d=prompt("응답을 입력하세요: agree(동의) / decline(미동의)",b.dataset.decision);
     if(d===null)return;
@@ -238,6 +250,24 @@ async function openDetail(id){
  $("#detailModal").classList.remove("hidden");
 }
 $("#detailClose").onclick=()=>$("#detailModal").classList.add("hidden");
+function openSignedDocument(f,x){
+ let r=one(x.consent_responses);if(!r)return;
+ let choice=r.decision==="agree"?"☑ 참가에 동의합니다　　☐ 참가하지 않습니다":"☐ 참가에 동의합니다　　☑ 참가하지 않습니다";
+ $("#signedDocument").innerHTML=`
+  <div class="signed-title"><div>${esc(centerName)}</div><h2>${esc(f.title)}</h2><div class="docno">문서번호 ${esc(f.document_no)} · 버전 ${esc(f.document_version)}</div></div>
+  <table class="signed-table"><tr><th>행사일</th><td>${esc(f.event_date||"-")}</td><th>시간</th><td>${esc(f.event_time||"-")}</td></tr><tr><th>장소</th><td colspan="3">${esc(f.location||"-")}</td></tr><tr><th>아동</th><td>${esc(x.children.name)} (${esc(x.children.grade||"-")})</td><th>보호자 연락처</th><td>${esc(maskPhone(x.children.guardian_phone))}</td></tr></table>
+  <h3>1. 프로그램 목적</h3><div class="signed-body">${esc(f.purpose||"-")}</div>
+  <h3>2. 프로그램 안내</h3><div class="signed-body">${esc(f.content||"-")}</div>
+  <h3>3. 유의사항</h3><div class="signed-body">${esc(f.precautions||"-")}</div>
+  <h3>4. 참가 동의</h3><div class="signed-body">${esc(f.consent_statement||"-")}</div>
+  <div class="signed-choice">${choice}</div>
+  ${r.note?`<table class="signed-table"><tr><th>전달사항</th><td>${esc(r.note)}</td></tr></table>`:""}
+  <div class="signed-signature"><div><b>제출일시</b><br>${esc(fmt(r.submitted_at))}<br><br><b>보호자</b>　${esc(r.signer_name)}　(서명)</div><img src="${r.signature_data_url}" alt="${esc(r.signer_name)} 보호자 전자서명"></div>
+  <div class="signed-foot">전자서명 기록 · 서명시각 ${esc(fmt(r.signature_captured_at||r.submitted_at))}<br>서명 확인값(SHA-256): ${esc(r.signature_hash||"-")}</div>`;
+ $("#signedDocumentModal").classList.remove("hidden");
+}
+$("#signedDocumentClose").onclick=()=>$("#signedDocumentModal").classList.add("hidden");
+$("#printSignedDocument").onclick=()=>window.print();
 
 async function loadPublic(){
  show("publicView");$("#headerRight").textContent="보호자용";
